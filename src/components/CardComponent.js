@@ -1,4 +1,5 @@
 "use client"
+import { addToCart } from '@/redux/features/cart/cartSlice'
 import React from 'react'
 import { useDispatch } from 'react-redux'
 
@@ -6,7 +7,7 @@ export default function CardComponent({ id, name, price, quantity, image, descri
 
     const dispatch = useDispatch()
     const onAddTCart = ()=>{
-        dispatch(onAddTCart({id,name,price,quantity,image,description}))
+        dispatch(addToCart({id,name,price,quantity,image,description}))
     }
     return (
 
@@ -28,7 +29,7 @@ export default function CardComponent({ id, name, price, quantity, image, descri
                 </div>
                 <div class="flex items-center justify-between">
                     <span class="text-3xl font-bold text-gray-900 dark:text-white">${price? price:"Unknow"}</span>
-                    <a href="#" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add to cart</a>
+                    <a onClick={onAddTCart} href="#" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add to cart</a>
                 </div>
             </div>
         </div>

@@ -10,7 +10,7 @@ export default function Home() {
     name:"Product 1",
     price:100,
     quantity:1,
-    image:"http://",
+    image:"https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg",
     description:" this is the description",
   });
 

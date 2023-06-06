@@ -1,10 +1,12 @@
+// create slice for cart
 
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-    cart: [], // array of items in cart
-    total: 0 // total price of all items in cart
+    cart: [],
+    total: 0
 }
+
 const cartSlice = createSlice({
     name: 'cart',
     initialState,
@@ -13,14 +15,13 @@ const cartSlice = createSlice({
             const { id, name, price, quantity, image, description } = action.payload
             const existingItem = state.cart.find(item => item.id === id)
 
-            if (existingItem) {
-                alert('Item already in cart')
-            } else {
+            // if (existingItem) {
+            //     alert('Item already in cart')
+            // } else {
                 state.cart.push({ id, name, price, quantity, image, description })
-            }
+            //}
             state.total += price * quantity
         },
-        // for clicking on + button in cart
         increaseQuantity(state, action) {
             const { id, price } = action.payload
             const existingItem = state.cart.find(item => item.id === id)
@@ -30,20 +31,23 @@ const cartSlice = createSlice({
             }
             state.total += price
         },
-        // for clicking on - button in cart
         decreaseQuantity(state, action) {
             const { id, price } = action.payload
             const existingItem = state.cart.find(item => item.id === id)
+
             if (existingItem) {
                 existingItem.quantity--
             }
             state.total -= price
-		 // remove item from cart if quantity is 0
+
             if (existingItem.quantity === 0) {
                 state.cart = state.cart.filter(item => item.id !== id)
-            }}
+            }
+        }
+
     }
-});
+})
+
 // export actions
 export const { addToCart, decreaseQuantity, increaseQuantity } = cartSlice.actions
 
@@ -53,4 +57,3 @@ export default cartSlice.reducer
 // selectors
 export const selectCart = state => state.cart.cart
 export const selectTotal = state => state.cart.total
-
